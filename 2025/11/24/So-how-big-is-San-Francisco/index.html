@@ -21,7 +21,7 @@
   <!--Description-->
   
       <meta name="description" content="ContextMy friend Daniel just started at Meta as a software engineer in San Francisco, so went to pay him a visit.
-While he was was showing me his neig">
+While he was  showing me his neighbo">
   
 
   <!--Author-->
@@ -105,7 +105,7 @@ While he was was showing me his neig">
     </div>
 
     <h2 id="Context"><a href="#Context" class="headerlink" title="Context"></a>Context</h2><p>My friend Daniel just started at Meta as a software engineer in San Francisco, so went to pay him a visit.</p>
-<p>While he was was showing me his neighbourhood and we were walking down from Telegraph Hill, he mentioned the city is “about 7 miles by 7 miles”. I found that an interesting fact and we left it at that.</p>
+<p>While he was  showing me his neighbourhood and we were walking down from Telegraph Hill, he mentioned the city is “about 7 miles by 7 miles”. I found that an interesting fact and we left it at that.</p>
 <p>On our way back, we checked the distance to get home using Google Maps, and it showed 0.51 miles. It felt a lot longer. Why? That’s because it was. Using Google’s point to point distance measuring tool, we found that the distance of 0.51 miles was as if we were walking on a flat surface. It didn’t account for the fact that we just crossed a steep hill.</p>
 <p><img src="/images/TelegraphHillSmooth.jpg"
      alt="Telegraph Hill walking route"
@@ -115,9 +115,9 @@ While he was was showing me his neig">
 <h2 id="How-is-surface-measured"><a href="#How-is-surface-measured" class="headerlink" title="How is surface measured?"></a>How is surface measured?</h2><br>
 
 <h4 id="Planar-Area"><a href="#Planar-Area" class="headerlink" title="Planar Area:"></a>Planar Area:</h4><p>This is the most common way of measuring area. The terrain is reprojected onto a surface, effectively assuming a perfectly flat surface. Using this method means that an area would not increase in square footage if we added hills or valleys. This is what Google Maps does when it measures point to point distance, or distance on the route given by the GPS. In practice, this is the most common use case. When Uber charges you by distance or when you measure how far you ran on Strava, you’re using planar measurements.</p>
-<h4 id="Terrain-aware-3D-Area"><a href="#Terrain-aware-3D-Area" class="headerlink" title="Terrain-aware (3D) Area:"></a>Terrain-aware (3D) Area:</h4><p>This method takes into account the elevation changes of the terrain. When measuring distances or areas using this method, hills and valleys are accounted for, meaning that the actual distance walked or area covered would be larger than the planar measurement. This is useful for activities like hiking or mountain biking, where elevation changes significantly impact the distance traveled. How it works is by calculating the 3D distance between points, taking into account the elevation at each point. For our example of going up and down Telegraph Hill, the actual distance would be calculated using the Pythagorean theorem to account for the vertical component of the distance.</p>
-<h4 id="Geodesic-Area"><a href="#Geodesic-Area" class="headerlink" title="Geodesic Area:"></a>Geodesic Area:</h4><p>If instead we wanted to measure the actual surface area, taking into account all the hills and valleys, we would need to use a datum that’s geodesic. That means measuring distances along the actual surface of the Earth, which is curved and uneven.</p>
-<p>When we measure distances on a map, we typically use a flat projection, which simplifies calculations but can lead to inaccuracies in hilly or mountainous areas. For example, if you were to walk from one side of Telegraph Hill to the other, climbing up the steep road and then back down again, the actual distance you walk would be longer than the straight line distance shown on a flat map.</p>
+<p>The exact planar area of San Francisco is 46.92 square miles (US Census Bureau).</p>
+<h4 id="Geodesic-Area"><a href="#Geodesic-Area" class="headerlink" title="Geodesic Area:"></a>Geodesic Area:</h4><p>To be slightly more accurate, geodesic measurement uses a smooth reference ellipsoid that mimics the Earth’s curvature. Just like a planar measurement, it ignores hill, valleys and roughness. That means measuring distances along the actual surface of the Earth, which is curved and uneven.</p>
+<h4 id="Terrain-aware-3D-Area"><a href="#Terrain-aware-3D-Area" class="headerlink" title="Terrain-aware (3D) Area:"></a>Terrain-aware (3D) Area:</h4><p>This method takes into account the elevation changes of the terrain. It incorporates elevation by adding up true 3D segment lengths based on a given interval. For consecutive points (x1, y1, z1) and (x2, y2, z2), the segment length is sqrt((Δx)^2 + (Δy)^2 + (Δz)^2), accounting for hills and valleys via the change in elevation Δy and Δz. This makes the distance walked or area covered strictly larger than the planar measurement. This is useful for activities like hiking or mountain biking, where elevation changes significantly impact the distance traveled. For our example of going up and down Telegraph Hill, the actual distance would be calculated by summing all the hypotenuses of the lines in the measured profile using the Pythagorean theorem.</p>
 <h2 id="The-coastline-paradox"><a href="#The-coastline-paradox" class="headerlink" title="The coastline paradox"></a>The coastline paradox</h2><p>It may not be obvious, but we are stumbling into a classic problem in geography called the coastline paradox. The paradox is that the distance or area depends greatly on the granularity of the measurement. The more detailed the measurement, the longer (larger) the distance (area).</p>
 <p>Let’s go back to our Telegraph Hill example. The two figures below show the measured profile of the exact same route. The difference is only in the resolution. The first uses 200’ sampling, whereas the second uses the more granular 25’ sampling. It’s visually obvious that the lower sampling (bottom figure) results in a longer line. </p>
 <p><img src="/images/TelegraphHillSmooth.jpg"
@@ -126,11 +126,33 @@ While he was was showing me his neig">
 <p><img src="/images/TelegraphHillGranular.jpg"
      alt="Telegraph Hill walking route"
      style="max-width:600px;width:100%;height:auto;display:block;margin:0 auto;" /></p>
-<p>As we lower the sampling measurement, we are increasing the distance of that route. As we make the measurement infinitely small, the distance approaches infinity.</p>
+<p>As we lower the sampling measurement, we are increasing the distance of that route. As we make the measurement infinitely small, the distance approaches infinity. The most famous example of this phenomenon is the coastline of Britain. Mappers have found that the length of Britain’s coastline increases without bound as the measurement scale decreases. This is because the coastline is highly irregular, with many small inlets and peninsulas that get smoothed out at higher intervals, but quickly add up when measured in finer detail. </p>
+<!-- Coastline paradox table with lines -->
+<table style="border-collapse:collapse;width:auto;font-size:0.95em;">
+  <thead>
+    <tr>
+      <th style="border:1px solid #999;padding:4px 8px;background:#f5f5f5;">Measurement unit</th>
+      <th style="border:1px solid #999;padding:4px 8px;background:#f5f5f5;">Coastline length</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td style="border:1px solid #999;padding:4px 8px;">200 km</td><td style="border:1px solid #999;padding:4px 8px;">2400 km</td></tr>
+    <tr><td style="border:1px solid #999;padding:4px 8px;">100 km</td><td style="border:1px solid #999;padding:4px 8px;">2800 km</td></tr>
+    <tr><td style="border:1px solid #999;padding:4px 8px;">50 km</td><td style="border:1px solid #999;padding:4px 8px;">3400 km</td></tr>
+    <tr><td style="border:1px solid #999;padding:4px 8px;">4.4 km</td><td style="border:1px solid #999;padding:4px 8px;">6220 km</td></tr>
+    <tr><td style="border:1px solid #999;padding:4px 8px;">1 km</td><td style="border:1px solid #999;padding:4px 8px;">8000 km</td></tr>
+    <tr><td style="border:1px solid #999;padding:4px 8px;">50 m</td><td style="border:1px solid #999;padding:4px 8px;">11500 km</td></tr>
+  </tbody>
+</table>
+<br>
+The Coastline Paradox.
+<br>
+<br>
+
 <h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>To answer the question, “How big is San Francisco?”, I will give you the answer of any good economist: “It depends”.</p>
 <p>From a theoretical standpoint, the area of San Francisco is infinite.<br>From a practical standpoint, let’s stick with 7x7 miles. </p>
 <!-- Small acknowledgment -->
-<p><small>Thank you Shamil Khedgikar (geospacial data science expert) for technical details and fact checking.</small></p>
+<p><small>Thank you Shamil Khedgikar (geospatial data science expert) for technical details and fact checking.</small></p>
 
 
     
