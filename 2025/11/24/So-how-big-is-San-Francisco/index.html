@@ -20,8 +20,8 @@
 
   <!--Description-->
   
-      <meta name="description" content="My friend Daniel recently got hired at Meta as a software engineer in San Francisco.
-This Fall, I went to visit him. He was giving me a tour of his ne">
+      <meta name="description" content="ContextMy friend Daniel just started at Meta as a software engineer in San Francisco, so went to pay him a visit.
+While he was was showing me his neig">
   
 
   <!--Author-->
@@ -89,6 +89,12 @@ This Fall, I went to visit him. He was giving me a tour of his ne">
 
 		<div class="container">
 			
+  <div class="row">
+    <div class="col-12">
+          <img class="img-fluid cover-image" src="/images/sf_hill_2.jpg" alt="So how big is San Francisco">
+    </div>
+  </div>
+
 <div class="row">
   <div class="col-12 col-lg-8 offset-lg-2 mt-4">
 
@@ -98,11 +104,33 @@ This Fall, I went to visit him. He was giving me a tour of his ne">
       <span class="date">2025-11-24</span>
     </div>
 
-    <p>My friend Daniel recently got hired at Meta as a software engineer in San Francisco.</p>
-<p>This Fall, I went to visit him. He was giving me a tour of his neighbourhood, and while we were walking down from Telegraph Hill, he said the city is about 7 miles wide and 7 miles long.</p>
-<p>This got us thinking, how big is San Francisco really? When we measure 7 miles, does this mean the straight line distance from one end of the city to the other? Or does it mean the distance if a laser went straight from one end to the other, ignoring all the hills and valleys in between?</p>
-<p>To find out, we decided to use Google Maps to measure the distance from the westernmost point of San Francisco (near Ocean Beach) to the easternmost point (near the Bay Bridge). Using the straight line measurement tool, we found that the distance is indeed about 7 miles. </p>
-<p>But what if you were to walk it? Let’s say you walk from one side of Telegraph Hill to the other, climbing up the steep road, and then back down again. Using Google Maps’ point to point distance measuring tool, we found that the walking distance is calculated as if we were walking on a flat surface, as if there was no hill.</p>
+    <h2 id="Context"><a href="#Context" class="headerlink" title="Context"></a>Context</h2><p>My friend Daniel just started at Meta as a software engineer in San Francisco, so went to pay him a visit.</p>
+<p>While he was was showing me his neighbourhood and we were walking down from Telegraph Hill, he mentioned the city is “about 7 miles by 7 miles”. I found that an interesting fact and we left it at that.</p>
+<p>On our way back, we checked the distance to get home using Google Maps, and it showed 0.51 miles. It felt a lot longer. Why? That’s because it was. Using Google’s point to point distance measuring tool, we found that the distance of 0.51 miles was as if we were walking on a flat surface. It didn’t account for the fact that we just crossed a steep hill.</p>
+<p><img src="/images/TelegraphHillSmooth.jpg"
+     alt="Telegraph Hill walking route"
+     style="max-width:600px;width:100%;height:auto;display:block;margin:0 auto;" /></p>
+<p>In the measured profile of our route, you can see we climbed about 250 feet up, then descended about 170 feet down. Although the distance on the x axis shows 0.51 miles (about 2700 feet), the actual distance we walked is clearly longer.</p>
+<p>This got us thinking, how big is San Francisco really? When we measure 7 miles, does this mean the straight line walking distance from one end of the city to the other? Or does it mean the distance if a laser went directly from one end to the other, ignoring all the hills and valleys in between?</p>
+<h2 id="How-is-surface-measured"><a href="#How-is-surface-measured" class="headerlink" title="How is surface measured?"></a>How is surface measured?</h2><br>
+
+<h4 id="Planar-Area"><a href="#Planar-Area" class="headerlink" title="Planar Area:"></a>Planar Area:</h4><p>This is the most common way of measuring area. The terrain is reprojected onto a surface, effectively assuming a perfectly flat surface. Using this method means that an area would not increase in square footage if we added hills or valleys. This is what Google Maps does when it measures point to point distance, or distance on the route given by the GPS. In practice, this is the most common use case. When Uber charges you by distance or when you measure how far you ran on Strava, you’re using planar measurements.</p>
+<h4 id="Terrain-aware-3D-Area"><a href="#Terrain-aware-3D-Area" class="headerlink" title="Terrain-aware (3D) Area:"></a>Terrain-aware (3D) Area:</h4><p>This method takes into account the elevation changes of the terrain. When measuring distances or areas using this method, hills and valleys are accounted for, meaning that the actual distance walked or area covered would be larger than the planar measurement. This is useful for activities like hiking or mountain biking, where elevation changes significantly impact the distance traveled. How it works is by calculating the 3D distance between points, taking into account the elevation at each point. For our example of going up and down Telegraph Hill, the actual distance would be calculated using the Pythagorean theorem to account for the vertical component of the distance.</p>
+<h4 id="Geodesic-Area"><a href="#Geodesic-Area" class="headerlink" title="Geodesic Area:"></a>Geodesic Area:</h4><p>If instead we wanted to measure the actual surface area, taking into account all the hills and valleys, we would need to use a datum that’s geodesic. That means measuring distances along the actual surface of the Earth, which is curved and uneven.</p>
+<p>When we measure distances on a map, we typically use a flat projection, which simplifies calculations but can lead to inaccuracies in hilly or mountainous areas. For example, if you were to walk from one side of Telegraph Hill to the other, climbing up the steep road and then back down again, the actual distance you walk would be longer than the straight line distance shown on a flat map.</p>
+<h2 id="The-coastline-paradox"><a href="#The-coastline-paradox" class="headerlink" title="The coastline paradox"></a>The coastline paradox</h2><p>It may not be obvious, but we are stumbling into a classic problem in geography called the coastline paradox. The paradox is that the distance or area depends greatly on the granularity of the measurement. The more detailed the measurement, the longer (larger) the distance (area).</p>
+<p>Let’s go back to our Telegraph Hill example. The two figures below show the measured profile of the exact same route. The difference is only in the resolution. The first uses 200’ sampling, whereas the second uses the more granular 25’ sampling. It’s visually obvious that the lower sampling (bottom figure) results in a longer line. </p>
+<p><img src="/images/TelegraphHillSmooth.jpg"
+     alt="Telegraph Hill walking route"
+     style="max-width:600px;width:100%;height:auto;display:block;margin:0 auto;" /></p>
+<p><img src="/images/TelegraphHillGranular.jpg"
+     alt="Telegraph Hill walking route"
+     style="max-width:600px;width:100%;height:auto;display:block;margin:0 auto;" /></p>
+<p>As we lower the sampling measurement, we are increasing the distance of that route. As we make the measurement infinitely small, the distance approaches infinity.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>To answer the question, “How big is San Francisco?”, I will give you the answer of any good economist: “It depends”.</p>
+<p>From a theoretical standpoint, the area of San Francisco is infinite.<br>From a practical standpoint, let’s stick with 7x7 miles. </p>
+<!-- Small acknowledgment -->
+<p><small>Thank you Shamil Khedgikar (geospacial data science expert) for technical details and fact checking.</small></p>
 
 
     
