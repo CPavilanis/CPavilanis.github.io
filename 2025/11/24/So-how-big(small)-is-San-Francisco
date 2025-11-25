@@ -16,9 +16,12 @@
 
   <!-- Title -->
   
-  <title>Christian&#39;s Blog</title>
+  <title>So how big (small) is San Francisco? - Christian&#39;s Blog</title>
 
   <!--Description-->
+  
+      <meta name="description" content="My friend Daniel recently got hired at Meta as a software engineer in San Francisco.
+This Fall, I went to visit him. He was giving me a tour of his ne">
   
 
   <!--Author-->
@@ -27,6 +30,8 @@
   
 
   <!--Open Graph Title-->
+  
+      <meta property="og:title" content="So how big (small) is San Francisco?"/>
   
 
   <!--Open Graph Site Name-->
@@ -83,32 +88,29 @@
 
 
 		<div class="container">
-			<div class="row">
-
-  
-      <div class="col-lg-4 col-md-6 col-12 mb-5">
-  <div class="image-box">
-    <div class="post-image">
-      <a href="/2025/10/09/Why-90-chance-of-rain-doesn-t-mean-what-you-think-it-means/">
-        <img class="img-fluid" src="/images/default.jpg" alt="Why '90% chance of rain' doesn't mean what you think it means">
-      </a>
-    </div>
-  </div>
-  <div class="post-details text-center mt-3">
-    <a href="/2025/10/09/Why-90-chance-of-rain-doesn-t-mean-what-you-think-it-means/">Why '90% chance of rain' doesn't mean what you think it means</a>
-    <hr>
-    <span class="date">2025-10-09</span>
-  </div>
-</div>
-
-  
-
-</div>
-
+			
 <div class="row">
-  
+  <div class="col-12 col-lg-8 offset-lg-2 mt-4">
 
+    <div class="post-page text-center my-4">
+      <h1>So how big (small) is San Francisco?</h1>
+      <hr>
+      <span class="date">2025-11-24</span>
+    </div>
+
+    <p>My friend Daniel recently got hired at Meta as a software engineer in San Francisco.</p>
+<p>This Fall, I went to visit him. He was giving me a tour of his neighbourhood, and while we were walking down from Telegraph Hill, he said the city is about 7 miles wide and 7 miles long.</p>
+<p>This got us thinking, how big is San Francisco really? When we measure 7 miles, does this mean the straight line distance from one end of the city to the other? Or does it mean the distance if a laser went straight from one end to the other, ignoring all the hills and valleys in between?</p>
+<p>To find out, we decided to use Google Maps to measure the distance from the westernmost point of San Francisco (near Ocean Beach) to the easternmost point (near the Bay Bridge). Using the straight line measurement tool, we found that the distance is indeed about 7 miles. </p>
+<p>But what if you were to walk it? Let’s say you walk from one side of Telegraph Hill to the other, climbing up the steep road, and then back down again. Using Google Maps’ point to point distance measuring tool, we found that the walking distance is calculated as if we were walking on a flat surface, as if there was no hill.</p>
+
+
+    
+
+
+  </div>
 </div>
+
 
 
 			<footer class="text-center mt-5 py-5">
