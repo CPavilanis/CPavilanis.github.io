@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!--
+    Blog Theme for Hexo: St. Andrews
+    Designed by Sharvari Desai
+    https://gumroad.com/l/hexo-theme-standrews
+  -->
+
+  <!-- Favicon -->
+  
+
+  <!-- Title -->
+  
+  <title>Private Blog - Christian&#39;s Blog</title>
+
+  <!--Description-->
+  
+      <meta name="description" content="🔐 Password Protected
+      
+      Unlock
+      
+    
+  
+
+
+
+  
+  
+
+  
+  
+
+
+
+
+
+(function() {
+  // Financial data from spreadsheet
+  const financialData">
+  
+
+  <!--Author-->
+  
+      <meta name="author" content="Christian Pavilanis">
+  
+
+  <!--Open Graph Title-->
+  
+      <meta property="og:title" content="Private Blog"/>
+  
+
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="Christian&#39;s Blog"/>
+
+  <!-- Pure CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=EB+Garamond|Montserrat:300" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/styles.css">
+
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Google Analytics -->
+  
+
+  
+  
+    <!-- Global site tag (gtag.js) - Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-46C1X4TLT1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-46C1X4TLT1');
+    </script>
+  
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+  <body>
+
+		<div class="container my-4">
+  <nav class="navbar navbar-toggleable-sm navbar-light px-1 py-3 my-3 mb-sm-3">
+    <a class="navbar-brand ml-2" href="/"><span class="title">Christian's Blog</span></a>
+    <button class="navbar-toggler navbar-toggler-right py-2" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse text-center mt-3 mt-md-0" id="navbarCollapse">
+      <ul class="navbar-nav ml-auto my-auto">
+        
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link" href="/about">About</a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link" href="/contact">Contact</a>
+          </li>
+        
+      </ul>
+      <hr class="hidden-md-up" />
+    </div>
+  </nav>
+</div>
+
+
+		<div class="container">
+			
+<div class="row">
+  <div class="col-12 col-lg-8 offset-lg-2 mt-4">
+
+    <div class="post-page text-center my-4">
+      <h1>Private Blog</h1>
+      <hr>
+      <span class="date">2025-01-01</span>
+    </div>
+
+    <!-- Password Protection for Financial Data -->
+<div id="password-protected-content">
+  <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; display: flex; align-items: center; justify-content: center;">
+    <div style="background: white; padding: 40px; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); max-width: 400px; text-align: center;">
+      <h2 style="margin-top: 0; color: #333;">🔐 Password Protected</h2>
+      <input type="password" id="password-input" placeholder="Enter password" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px; box-sizing: border-box; margin: 15px 0;">
+      <button id="unlock-btn" style="width: 100%; padding: 12px; background: #4CAF50; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; margin: 10px 0;">Unlock</button>
+      <p id="error-msg" style="color: #d32f2f; margin-top: 10px; display: none;"></p>
+    </div>
+  </div>
+</div>
+
+<div id="content-wrapper" style="display: none;">
+  <!-- Charts will be rendered here -->
+  <div id="charts-container"></div>
+
+  <!-- Full Data Table -->
+  <div id="table-container"></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+
+<script>
+(function() {
+  // Financial data from spreadsheet
+  const financialData = {
+    fullHeaders: ["Category", "July 3, 2024", "July 7, 2024", "July 19, 2024", "July 24, 2024", "August 2, 2024", "August 13, 2024", "September 3, 2024", "September 12, 2024", "September 16, 2024", "September 20, 2024", "September 26, 2024", "October 1, 2024", "October 7, 2024", "October 21, 2024", "October 28, 2024", "November 1, 2024", "November 20, 2024", "December 2, 2024", "January 3, 2025", "February 1, 2025", "March 3, 2025", "April 1, 2025", "May 1, 2025", "June 1, 2025", "July 1, 2025", "August 1, 2025", "September 1, 2025", "October 1, 2025", "November 1, 2025", "December 1, 2025"],
+    // Consolidated to one per month (earliest date): Jul, Aug, Sep(3 data), Oct(3), Nov(2), Dec, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec 2025
+    chartIndices: [0, 4, 6, 11, 15, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29],
+    rows: [
+      { label: "USD/CAD", values: [1.363, 1.364, 1.372, 1.378, 1.384, 1.373, 1.355, 1.36, 1.359, 1.358, 1.347, 1.353, 1.362, 1.383, 1.388, 1.393, 1.398, 1.404, 1.44, 1.45, 1.44, 1.439, 1.382, 1.374, 1.36, 1.379, 1.381, 1.392, 1.403, 1.396] },
+      { label: "Chequing (CAD)", values: [1888.07, 1888.07, 700.07, 3027.38, 3027.38, 2967.86, 3710.61, 3489.59, 3411.59, 3411.59, 3388.85, 3388.85, 3438.85, 2978.85, 2978.85, 2920.85, 3259.33, 3229.34, 3049.53, 4534.53, 4417.64, 3622.8, 3510.43, 39.64, 7560.19, 7317.93, 7361.81, 7147.47, 7254.26, 7199.59] },
+      { label: "Questrade (CAD)", values: [6444.76, 6485.2, 6421.93, 6456.04, 6000.46, 6190.18, 6414.58, 6286.81, 6301.54, 6350.5, 6505.09, 6460.33, 6481.09, 6477.77, 6442.9, 6395.44, 6357.45, 6462.59, 6401.24, 6734.31, 6857.51, 6640.69, 6608.32, 6906.95, 7002.57, 7011.09, 7235.55, 7474.89, 7770.27, 7793.03] },
+      { label: "Chequing (USD)", values: [2485.6, 435.6, 921.77, 921.77, 4385.18, 1076.59, 1740.74, 5544.44, 1975.22, 252.54, 3849.46, 1131.17, 1131.17, 509.35, 1966.89, 1966.89, 2849.33, 15.67, 5878.88, 2561.66, 825.95, 5410.96, 1789.06, 521.61, 1784.92, 4434.48, 4784.48, 2325.03, 1370.37, 2083.62] },
+      { label: "IBKR (USD)", values: [68953, 73492.97, 73821.03, 58774.71, 57271.35, 57998.19, 64303.41, 64287.74, 69844.22, 70787.26, 71678.22, 71630.16, 71326.58, 74038.54, 75523.98, 74945.39, 77948.86, 81807.28, 85644.23, 88165.3, 86105.88, 83642.37, 89535.16, 94365.26, 99884.44, 104554.17, 110318.24, 124811.15, 131637.5, 132861.31] },
+      { label: "401k", values: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1603.43, 12126.92, 15399.77, 19693.69, 24044.13, 29438.89, 33021.71, 34801.36, 36181.23, 36916.7] },
+      { label: "Roth IRA", values: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7000, 11696.35, 12906.86, 13006.83, 13693.34, 14361.83, 14463.92, 14923.06, 15506.92, 15902.89, 15898] },
+      { label: "Other Assets (USD)", values: [3675, 3675, 3675, 3675, 3675, 3675, 5014.96, 5122.81, 5153.45, 5122.26, 5218.7, 5236.79, 5236.11, 5319.97, 5437.57, 5409.18, 5687.51, 3881.18, 4110.06, 4320.76, 4480.94, 4552.29, 4824.2, 5005.55, 5155.49, 5410.32, 3794.58, 3794.58, 4119.18, 4336.63] },
+      { label: "Total Assets", values: [81227.18, 83740.66, 83609.7, 70251.85, 71853.1, 69422.18, 78531.21, 82143.52, 84120.88, 83352.17, 88089.54, 85280.02, 84979.57, 86705.75, 89714.36, 89009.57, 93364.54, 92604.93, 102198.38, 109820.74, 112544.03, 125770.45, 131875.32, 138336.84, 150783.53, 163278.78, 173617.99, 187945.48, 195804.6, 198496.32], isSummary: true },
+      { label: "Credit Cards (Canada)", values: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+      { label: "Student Loans (Canada)", values: [19327, 19327, 18302.23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+      { label: "Credit Cards (US)", values: [1636.23, 2439.13, 120.19, 433.31, 2974.57, 2001.19, 3270.77, 3829.75, 1573.64, 658.67, 3659.3, 1627.91, 1798.72, 178.28, 3161.66, 3307.58, 6420.68, 1007.09, 4869.01, 3552.78, 4700.25, 665.19, 825.98, 1916.27, 1248.64, 3994.51, 4586.09, 1852.73, 6725.69, 4003.31] },
+      { label: "Other Liabilities (USD)", values: [1000, 1000, 1000, 1000, 1000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+      { label: "Total Liabilities", values: [16815.95, 17604.62, 14462.41, 1433.31, 3974.57, 2001.19, 3270.77, 3829.75, 1573.64, 658.67, 3659.3, 1627.91, 1798.72, 178.28, 3161.66, 3307.58, 6420.68, 1007.09, 4869.01, 3552.78, 4700.25, 683.95, 828.3, 1918.61, 1251, 4014.33, 4588.41, 1855.04, 6745.18, 4003.31], isSummary: true },
+      { label: "Net Worth (USD)", values: [64411.23, 66136.04, 69147.29, 68818.54, 67878.53, 67420.99, 75260.44, 78313.77, 82547.24, 82693.5, 84430.24, 83652.11, 83180.85, 86527.47, 86552.7, 85701.99, 86943.86, 91597.84, 97329.37, 106267.96, 107843.78, 125086.5, 131047.02, 136418.23, 149532.53, 159264.45, 169029.57, 186090.45, 189059.42, 194493.01], isSummary: true },
+      { label: "Net Worth (CAD)", values: [87792.72, 90234.16, 94852.99, 94854.65, 93964.51, 92537.07, 101982.86, 106506.73, 112170.25, 112273.85, 113758.67, 113144.17, 113255.85, 119665.19, 120172.09, 119379.69, 121549.56, 128645.87, 140107.82, 154060.64, 155265.02, 180032.95, 181144.52, 187377.71, 203358.64, 219700.96, 233421.88, 259125.35, 265157.44, 271588.44], isSummary: true }
+    ],
+    exchangeRates: [1.363, 1.364, 1.372, 1.378, 1.384, 1.373, 1.355, 1.36, 1.359, 1.358, 1.347, 1.353, 1.362, 1.383, 1.388, 1.393, 1.398, 1.404, 1.44, 1.45, 1.44, 1.439, 1.382, 1.374, 1.36, 1.379, 1.381, 1.392, 1.403, 1.396]
+  };
+
+  // Function to get chart labels (month and year only)
+  function getChartLabels() {
+    return financialData.chartIndices.map(idx => {
+      const dateStr = financialData.fullHeaders[idx + 1];
+      const date = new Date(dateStr);
+      return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+    });
+  }
+
+  // Function to get consolidated chart data (one value per month)
+  function getConsolidatedData(values) {
+    return financialData.chartIndices.map(idx => values[idx]);
+  }
+
+  // Encrypted data
+  const encryptedData = {
+    salt: "1afafa527a5e7c91c71abd17b1da1d1e",
+    iv: "9482baa17ee4a4105cbd505b20ff8c3b",
+    data: "854cc4fba5cb798db95cc7e4416ee1cbf9cb96f166ab5250017c4abdaee91ca8e03151d84ac09dc74c4ca76c1446375ecceafa3323af43583239249d6558378021d61e4b16e2d4af1b7e62411f70eeb25a70ed4feb790c1fa8634a51d6e383840af72b318d65425d176fcecdd88f9ce0b3c890e82a55ea6c383b5852d039c01328eeeda6d31a4e43b23c67c82ef75269896eb1810b9c2acb898fffa11d749d18bd9ac5b3f163f6f26ee30a62c7382e1e5ae9c4a0611f30b2924de1de3e1c416449954d930c80da1650952b669640923ce0dc267a1135dfb74fb6af2112df19c4e5d433059ebfef74843feeaef8b67b9387ce5e122c4a826adb14fdc74742f0dba479b5a273b2fae571a37d41f6b96929ddc820f08ebaddf790b44ae690e9f9b95c5c651f6806752711ab8018a54180db44e15865260fbdaf74d1597bbe65931fcd34830a6d06c16f7a93b4c1716b42794f19d00cc263da742aeb327bb7b9c82cf5947ac0e5a253fbecd773134e898add4696636bb53ca5dc70321f6c0f115032130a5ac2af8f53dcd8fb6fb037818889d8327266e89ec943842a7a7dfb3f05404b0314b6d8a7b76235541f8a2e5300967d75e4d5b635f00abe5cdcdadccad39ec15d5630e3ecbe6690d2f9494e7262ce511b23699e07f9be45ca472537cc5d948716fc33a789e5b28d2145627ff42780440777f2e40b7aeb848a539b7a069fb7df4b8ad8bebce437452b4e52c87f30e46035e97b552dce910f6b2116191a2cf932937eadd6c5ebe8b5cd589ff60421ec263b320cc2e384d2c6e859391de2cc8138b76be4eec72c4ae6649314a06e0895292b742b75036e8ab2028223c4ecf4464b3e8d4b4b676f04030f092e4b3170b74ae5ac2a657c13d4da0f12e38405eb90e4d9102c22278a024a24958d73f4137028100a4e40ddf845ea5d9699fb808e2d66fc443a37538e51c148b6e7beec8d044d4be29e948b41fec3fdbb35e29c0f9f796ddf3aa73857b9c8f3509f01f55e0a4faaf3d9543220ff2ddd8a9086931b3a716e99aa65dc64d87521d4f74f2f5b3e4df4998558b80b2f0619df402459f4fd9dafe25d876dccfae7510fa2b5ef9d0318d0ad7a0164195d92a02b2d24626a1afe7bead1e8eef63ef6d6c9bf2aa27286d5e1839949278d30a8495cb6c3f844ca822130c662d2bf77ba1201ab904fce1ffad5969cb36fdc2e26856f35730dcf6607ec5534a3697dc433049f90889498665d63901014211bf6187ecfedce6f0f4234e02185f6e3f1aa1d6be2e3fe5d05e4b504313f915c6373f855e9502651ba4c88731da3a01b309b263d53645beacc56cba560f53ef8adeeecca53dc20a2556206606ead8c20a7def89c001e2e6c0474c1d4f810ef8b998582b817e009bf8604782ea5739abc26dabacb609fcc0e2f97eef8887732de9fbcbd1232a70f08a2d620e537aefb0994a819c323d9de825e42bed818bf26592565cbaf6a9d3a134bf6f8356c369a69c5ceede6f01f679bdbff6f96fcf6021d02fdde4e2141f24580cb0ab00c5dc3938426ae67c68c7d3eba588fc5a13ed3cd6b77fb4082e1fd3ca12cc92e84313cdfc3910f76991cf35e70f9d0fd8f25ed1377e56f3a0fa65d72cfccd3cfdeee6481a6f8d3ad18609c44e02c"
+  };
+
+  async function decryptContent(password) {
+    try {
+      const saltBytes = hexToBytes(encryptedData.salt);
+      const ivBytes = hexToBytes(encryptedData.iv);
+      const dataBytes = hexToBytes(encryptedData.data);
+
+      const passwordKey = await crypto.subtle.importKey(
+        'raw',
+        new TextEncoder().encode(password),
+        'PBKDF2',
+        false,
+        ['deriveKey']
+      );
+
+      const key = await crypto.subtle.deriveKey(
+        {
+          name: 'PBKDF2',
+          salt: saltBytes,
+          iterations: 100000,
+          hash: 'SHA-256'
+        },
+        passwordKey,
+        { name: 'AES-CBC', length: 256 },
+        false,
+        ['decrypt']
+      );
+
+      const decrypted = await crypto.subtle.decrypt(
+        { name: 'AES-CBC', iv: ivBytes },
+        key,
+        dataBytes
+      );
+
+      return new TextDecoder().decode(decrypted);
+    } catch (error) {
+      console.error('Decryption error:', error);
+      throw new Error('Decryption failed. Please check your password.');
+    }
+  }
+
+  function hexToBytes(hex) {
+    const bytes = new Uint8Array(hex.length / 2);
+    for (let i = 0; i < hex.length; i += 2) {
+      bytes[i / 2] = parseInt(hex.substr(i, 2), 16);
+    }
+    return bytes;
+  }
+
+  function createCharts() {
+    const chartsContainer = document.getElementById('charts-container');
+
+    // Chart 1: Net Worth Over Time (USD)
+    const chartDiv1 = document.createElement('div');
+    chartDiv1.style.marginBottom = '40px';
+    chartDiv1.style.maxWidth = '100%';
+    chartDiv1.style.height = '500px';
+    const canvas1 = document.createElement('canvas');
+    canvas1.id = 'netWorthChart';
+    chartDiv1.appendChild(canvas1);
+    chartsContainer.appendChild(chartDiv1);
+
+    const netWorthRow = financialData.rows.find(r => r.label === 'Net Worth (USD)');
+    new Chart(canvas1, {
+      type: 'line',
+      data: {
+        labels: getChartLabels(),
+        datasets: [{
+          label: 'Net Worth (USD)',
+          data: getConsolidatedData(netWorthRow.values),
+          borderColor: '#4CAF50',
+          backgroundColor: 'rgba(76, 175, 80, 0.1)',
+          borderWidth: 3,
+          fill: true,
+          tension: 0.4,
+          pointRadius: 4,
+          pointBackgroundColor: '#4CAF50'
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          title: { display: true, text: '📊 Net Worth Growth Over Time (USD)', font: { size: 16 } },
+          legend: { display: true, position: 'top' }
+        },
+        scales: {
+          y: { beginAtZero: true, ticks: { callback: v => '$' + v.toLocaleString() } }
+        }
+      }
+    });
+
+    // Chart 2: Net Worth in CAD
+    const chartDiv3 = document.createElement('div');
+    chartDiv3.style.marginBottom = '40px';
+    chartDiv3.style.height = '500px';
+    const canvas3 = document.createElement('canvas');
+    canvas3.id = 'netWorthCADChart';
+    chartDiv3.appendChild(canvas3);
+    chartsContainer.appendChild(chartDiv3);
+
+    // Calculate CAD values by multiplying by exchange rates
+    const usdNetWorthConsolidated = getConsolidatedData(netWorthRow.values);
+    const exchangeRatesConsolidated = financialData.chartIndices.map(idx => financialData.exchangeRates[idx]);
+    const cadNetWorthValues = usdNetWorthConsolidated.map((val, idx) => val * exchangeRatesConsolidated[idx]);
+
+    new Chart(canvas3, {
+      type: 'line',
+      data: {
+        labels: getChartLabels(),
+        datasets: [{
+          label: 'Net Worth (CAD)',
+          data: cadNetWorthValues,
+          borderColor: '#FF9800',
+          backgroundColor: 'rgba(255, 152, 0, 0.1)',
+          borderWidth: 3,
+          fill: true,
+          tension: 0.4,
+          pointRadius: 4,
+          pointBackgroundColor: '#FF9800'
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          title: { display: true, text: '💰 Net Worth Growth in CAD', font: { size: 16 } },
+          legend: { display: true, position: 'top' }
+        },
+        scales: {
+          y: { beginAtZero: true, ticks: { callback: v => '$' + v.toLocaleString('en-CA', { maximumFractionDigits: 0 }) } }
+        }
+      }
+    });
+  }
+
+  function createTable() {
+    const tableContainer = document.getElementById('table-container');
+
+    const wrapper = document.createElement('div');
+    wrapper.style.overflowX = 'auto';
+    wrapper.style.border = '1px solid #ddd';
+    wrapper.style.borderRadius = '4px';
+    wrapper.style.marginTop = '40px';
+
+    const table = document.createElement('table');
+    table.style.width = '100%';
+    table.style.borderCollapse = 'collapse';
+    table.style.fontSize = '13px';
+
+    // Header
+    const thead = document.createElement('thead');
+    const headerRow = document.createElement('tr');
+    headerRow.style.backgroundColor = '#f5f5f5';
+    headerRow.style.position = 'sticky';
+    headerRow.style.top = '0';
+
+    financialData.fullHeaders.forEach(header => {
+      const th = document.createElement('th');
+      th.textContent = header;
+      th.style.padding = '12px';
+      th.style.textAlign = 'right';
+      th.style.fontWeight = 'bold';
+      th.style.borderBottom = '2px solid #ddd';
+      th.style.whiteSpace = 'nowrap';
+      if (header === 'Category') th.style.textAlign = 'left';
+      headerRow.appendChild(th);
+    });
+    thead.appendChild(headerRow);
+    table.appendChild(thead);
+
+    // Body
+    const tbody = document.createElement('tbody');
+    financialData.rows.forEach((row, idx) => {
+      const tr = document.createElement('tr');
+      tr.style.borderBottom = '1px solid #eee';
+      if (row.isSummary) tr.style.backgroundColor = '#f9f9f9';
+      if (row.isSummary) tr.style.fontWeight = 'bold';
+
+      // Label
+      const labelTd = document.createElement('td');
+      labelTd.textContent = row.label;
+      labelTd.style.padding = '10px 12px';
+      labelTd.style.fontWeight = row.isSummary ? 'bold' : 'normal';
+      labelTd.style.borderBottom = '1px solid #eee';
+      tr.appendChild(labelTd);
+
+      // Values
+      row.values.forEach(val => {
+        const td = document.createElement('td');
+        td.textContent = '$' + val.toFixed(2);
+        td.style.padding = '10px 12px';
+        td.style.textAlign = 'right';
+        td.style.fontFamily = 'monospace';
+        td.style.borderBottom = '1px solid #eee';
+        td.style.whiteSpace = 'nowrap';
+        tr.appendChild(td);
+      });
+
+      tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);
+
+    wrapper.appendChild(table);
+    tableContainer.appendChild(wrapper);
+
+    // Add scroll instructions
+    const instructions = document.createElement('p');
+    instructions.textContent = '👈 Scroll left/right to view all months →';
+    instructions.style.fontSize = '12px';
+    instructions.style.color = '#666';
+    instructions.style.marginTop = '10px';
+    tableContainer.appendChild(instructions);
+  }
+
+  function showDecryptedContent() {
+    // Hide password prompt
+    document.getElementById('password-protected-content').style.display = 'none';
+
+    // Show content
+    document.getElementById('content-wrapper').style.display = 'block';
+
+    // Create charts and table
+    createCharts();
+    createTable();
+  }
+
+  // Show the password prompt
+  document.getElementById('password-protected-content').style.display = 'flex';
+
+  // Handle unlock button click
+  document.getElementById('unlock-btn').addEventListener('click', async function() {
+    const password = document.getElementById('password-input').value;
+    const errorMsg = document.getElementById('error-msg');
+
+    if (!password) {
+      errorMsg.textContent = 'Please enter a password.';
+      errorMsg.style.display = 'block';
+      return;
+    }
+
+    try {
+      await decryptContent(password);
+      showDecryptedContent();
+    } catch (error) {
+      errorMsg.textContent = error.message;
+      errorMsg.style.display = 'block';
+    }
+  });
+
+  // Allow Enter key to submit
+  document.getElementById('password-input').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+      document.getElementById('unlock-btn').click();
+    }
+  });
+})();
+</script>
+
+
+
+    
+
+
+  </div>
+</div>
+
+
+
+			<footer class="text-center mt-5 py-5">
+  
+  
+  
+  
+  
+    <a href="https://www.linkedin.com/in/christianpav" target="_blank"><i class="fa fa-linkedin mr-4"></i></a>
+  
+  
+  
+    <a href="https://github.com/CPavilanis?tab=repositories" target="_blank"><i class="fa fa-github mr-4"></i></a>
+  
+  
+  
+  
+</footer>
+
+		</div>
+
+		<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+<!-- Disqus Comments -->
+
+
+
+  </body>
+</html>
